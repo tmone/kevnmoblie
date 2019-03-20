@@ -1,0 +1,71 @@
+{
+    "name": "vn.com.kerryexpress.kevnmobile",
+    "version": "1.0.1",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "displayName": "KEVN Mobile",
+    "dependencies": {
+        "code-push": "^2.0.6",
+        "cordova-ios": "^4.5.5",
+        "cordova-plugin-app-version": "^0.1.9",
+        "cordova-plugin-appcenter-analytics": "^0.2.1",
+        "cordova-plugin-appcenter-crashes": "^0.2.1",
+        "cordova-plugin-appcenter-push": "^0.2.1",
+        "cordova-plugin-appcenter-shared": "^0.2.1",
+        "cordova-plugin-camera": "^4.0.3",
+        "cordova-plugin-code-push": "^1.11.15",
+        "cordova-plugin-compat": "^1.2.0",
+        "cordova-plugin-device": "^2.0.2",
+        "cordova-plugin-dialogs": "^2.0.1",
+        "cordova-plugin-file": "^4.3.3",
+        "cordova-plugin-file-transfer": "^1.6.3",
+        "cordova-plugin-geolocation": "^4.0.1",
+        "cordova-plugin-globalization": "^1.11.0",
+        "cordova-plugin-inappbrowser": "^3.0.0",
+        "cordova-plugin-ios-camera-permissions": "1.2.0",
+        "cordova-plugin-nativestorage": "^2.3.2",
+        "cordova-plugin-network-information": "^2.0.1",
+        "cordova-plugin-splashscreen": "^5.0.2",
+        "cordova-plugin-statusbar": "^2.4.2",
+        "cordova-plugin-vibration": "^3.1.0",
+        "cordova-plugin-whitelist": "^1.3.3",
+        "cordova-plugin-zip": "^3.1.0",
+        "path": "^0.12.7",
+        "phonegap-plugin-barcodescanner": "^8.0.1"
+    },
+    "cordova": {
+        "plugins": {
+            "cordova-plugin-code-push": {},
+            "cordova-plugin-zip": {},
+            "cordova-plugin-whitelist": {},
+            "cordova-plugin-statusbar": {},
+            "cordova-plugin-vibration": {},
+            "cordova-plugin-network-information": {},
+            "cordova-plugin-inappbrowser": {},
+            "cordova-plugin-globalization": {},
+            "cordova-plugin-geolocation": {},
+            "cordova-plugin-dialogs": {},
+            "cordova-plugin-device": {},
+            "phonegap-plugin-barcodescanner": {},
+            "cordova-plugin-nativestorage": {},
+            "cordova-plugin-splashscreen": {},
+            "cordova-plugin-appcenter-push": {},
+            "cordova-plugin-appcenter-crashes": {},
+            "cordova-plugin-file": {},
+            "cordova-plugin-file-transfer": {},
+            "cordova-plugin-appcenter-analytics": {},
+            "cordova-plugin-app-version": {},
+            "cordova-plugin-camera": {},
+            "cordova-plugin-ios-camera-permissions": {
+                "CAMERA_USAGE_DESCRIPTION": "To scan barcode",
+                "MICROPHONE_USAGE_DESCRIPTION": "Certifer carrier tracking",
+                "PHOTOLIBRARY_ADD_USAGE_DESCRIPTION": "Capture bill status",
+                "PHOTOLIBRARY_USAGE_DESCRIPTION": "save and upload last bill status"
+            }
+        },
+        "platforms": [
+            "ios"
+        ]
+    }
+}

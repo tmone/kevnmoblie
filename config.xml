@@ -1,0 +1,145 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="vn.com.kerryexpress.kevnmobile" version="1.0.8" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>KEVN Mobile</name>
+    <description>
+        A tool for pickup and delivery Kerry Express VN.
+    </description>
+    <author email="thinh.nguyen@kerryexpres.com.vn" href="https://kes.kerryexpress.com.vn">
+        IT Kerry Express VN Team
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <platform name="android">
+        <preference name="android-build-tool" value="gradle" />
+        <preference name="android-minSdkVersion" value="19" />
+        <allow-intent href="market:*" />
+        <preference name="APP_SECRET" value="ac0a1612-59ab-482e-80da-d7014d04a4d4" />
+        <preference name="CodePushDeploymentKey" value="DfMgrGWErW59AgYLW-xJCImHYiGGryZjCFy5WV" />
+        <preference name="APPCENTER_APP_SECRET" value="ea198278-ae2f-48a2-bdf1-0a4fdac82f59" />
+        <resource-file src="google-services.json" target="app/google-services.json" />
+        <allow-intent href="market:*" />
+        <preference name="APPCENTER_ANALYTICS_ENABLE_IN_JS" value="true" />
+        <preference name="APPCENTER_CRASHES_ALWAYS_SEND" value="false" />
+    </platform>
+    <platform name="ios">
+        <allow-intent href="itms:*" />
+        <allow-intent href="itms-apps:*" />
+        <preference name="BackupWebStorage" value="none" />
+        <preference name="APPCENTER_ANALYTICS_ENABLE_IN_JS" value="true" />
+        <preference name="APPCENTER_CRASHES_ALWAYS_SEND" value="false" />
+        <preference name="APP_SECRET" value="64d1155d-8977-46f6-830c-e90125c2f1b6" />
+        <preference name="CodePushDeploymentKey" value="883VVBZ52zV0mdqiGriMayQp7LiaHJGJ7wyxE" />
+        <preference name="APPCENTER_APP_SECRET" value="64d1155d-8977-46f6-830c-e90125c2f1b6" />
+    </platform>
+    <preference name="DisallowOverscroll" value="true" />
+    <platform name="android">
+        <icon density="ldpi" src="res/icon/android/drawable-ldpi-icon.png" />
+        <icon density="mdpi" src="res/icon/android/drawable-mdpi-icon.png" />
+        <icon density="hdpi" src="res/icon/android/drawable-hdpi-icon.png" />
+        <icon density="xhdpi" src="res/icon/android/drawable-xhdpi-icon.png" />
+        <icon density="xxhdpi" src="res/icon/android/drawable-xxhdpi-icon.png" />
+        <icon density="xxxhdpi" src="res/icon/android/drawable-xxxhdpi-icon.png" />
+        <splash density="land-ldpi" src="res/screen/android/drawable-land-ldpi-screen.png" />
+        <splash density="land-mdpi" src="res/screen/android/drawable-land-mdpi-screen.png" />
+        <splash density="land-hdpi" src="res/screen/android/drawable-land-hdpi-screen.png" />
+        <splash density="land-xhdpi" src="res/screen/android/drawable-land-xhdpi-screen.png" />
+        <splash density="land-xxhdpi" src="res/screen/android/drawable-land-xxhdpi-screen.png" />
+        <splash density="land-xxxhdpi" src="res/screen/android/drawable-land-xxxhdpi-screen.png" />
+        <splash density="port-ldpi" src="res/screen/android/drawable-port-ldpi-screen.png" />
+        <splash density="port-mdpi" src="res/screen/android/drawable-port-mdpi-screen.png" />
+        <splash density="port-hdpi" src="res/screen/android/drawable-port-hdpi-screen.png" />
+        <splash density="port-xhdpi" src="res/screen/android/drawable-port-xhdpi-screen.png" />
+        <splash density="port-xxhdpi" src="res/screen/android/drawable-port-xxhdpi-screen.png" />
+        <splash density="port-xxxhdpi" src="res/screen/android/drawable-port-xxxhdpi-screen.png" />
+    </platform>
+    <platform name="ios">
+        <edit-config file="*-Info.plist" mode="merge" target="NSCameraUsageDescription">
+            <string>To scan barcodes</string>
+        </edit-config>
+        <icon height="57" platform="ios" src="res/icon/ios/icon.png" width="57" />
+        <icon height="114" platform="ios" src="res/icon/ios/icon@2x.png" width="114" />
+        <icon height="40" platform="ios" src="res/icon/ios/icon-40.png" width="40" />
+        <icon height="80" platform="ios" src="res/icon/ios/icon-40@2x.png" width="80" />
+        <icon height="50" platform="ios" src="res/icon/ios/icon-50.png" width="50" />
+        <icon height="100" platform="ios" src="res/icon/ios/icon-50@2x.png" width="100" />
+        <icon height="60" platform="ios" src="res/icon/ios/icon-60.png" width="60" />
+        <icon height="120" platform="ios" src="res/icon/ios/icon-60@2x.png" width="120" />
+        <icon height="180" platform="ios" src="res/icon/ios/icon-60@3x.png" width="180" />
+        <icon height="72" platform="ios" src="res/icon/ios/icon-72.png" width="72" />
+        <icon height="144" platform="ios" src="res/icon/ios/icon-72@2x.png" width="144" />
+        <icon height="76" platform="ios" src="res/icon/ios/icon-76.png" width="76" />
+        <icon height="152" platform="ios" src="res/icon/ios/icon-76@2x.png" width="152" />
+        <icon height="29" platform="ios" src="res/icon/ios/icon-small.png" width="29" />
+        <icon height="58" platform="ios" src="res/icon/ios/icon-small@2x.png" width="58" />
+        <icon height="87" platform="ios" src="res/icon/ios/icon-small@3x.png" width="87" />
+        <splash height="1136" platform="ios" src="res/screen/ios/Default-568h@2x~iphone.png" width="640" />
+        <splash height="1334" platform="ios" src="res/screen/ios/Default-667h.png" width="750" />
+        <splash height="2208" platform="ios" src="res/screen/ios/Default-736h.png" width="1242" />
+        <splash height="1242" platform="ios" src="res/screen/ios/Default-Landscape-736h.png" width="2208" />
+        <splash height="1536" platform="ios" src="res/screen/ios/Default-Landscape@2x~ipad.png" width="2048" />
+        <splash height="768" platform="ios" src="res/screen/ios/Default-Landscape~ipad.png" width="1024" />
+        <splash height="2048" platform="ios" src="res/screen/ios/Default-Portrait@2x~ipad.png" width="1536" />
+        <splash height="1024" platform="ios" src="res/screen/ios/Default-Portrait~ipad.png" width="768" />
+        <splash height="960" platform="ios" src="res/screen/ios/Default@2x~iphone.png" width="640" />
+        <splash height="480" platform="ios" src="res/screen/ios/Default~iphone.png" width="320" />
+    </platform>
+    <platform name="wp8">
+        <icon height="99" platform="wp8" src="res/icon/wp8/ApplicationIcon.png" width="99" />
+        <icon height="159" platform="wp8" src="res/icon/wp8/Background.png" width="159" />
+        <splash height="1280" platform="wp8" src="res/screen/wp8/screen-portrait.jpg" width="768" />
+    </platform>
+    <platform name="windows">
+        <icon height="150" platform="windows" src="res/icon/windows/Square150x150Logo.scale-100.png" width="150" />
+        <icon height="30" platform="windows" src="res/icon/windows/Square30x30Logo.scale-100.png" width="30" />
+        <icon height="50" platform="windows" src="res/icon/windows/StoreLogo.scale-100.png" width="50" />
+        <splash height="300" platform="windows" src="res/screen/windows/SplashScreen.scale-100.png" width="620" />
+        <icon height="120" platform="windows" src="res/icon/windows/StoreLogo.scale-240.png" width="120" />
+        <icon height="44" platform="windows" src="res/icon/windows/Square44x44Logo.scale-100.png" width="44" />
+        <icon height="106" platform="windows" src="res/icon/windows/Square44x44Logo.scale-240.png" width="106" />
+        <icon height="70" platform="windows" src="res/icon/windows/Square70x70Logo.scale-100.png" width="70" />
+        <icon height="71" platform="windows" src="res/icon/windows/Square71x71Logo.scale-100.png" width="71" />
+        <icon height="170" platform="windows" src="res/icon/windows/Square71x71Logo.scale-240.png" width="170" />
+        <icon height="360" platform="windows" src="res/icon/windows/Square150x150Logo.scale-240.png" width="360" />
+        <icon height="310" platform="windows" src="res/icon/windows/Square310x310Logo.scale-100.png" width="310" />
+        <icon height="150" platform="windows" src="res/icon/windows/Wide310x150Logo.scale-100.png" width="310" />
+        <icon height="360" platform="windows" src="res/icon/windows/Wide310x150Logo.scale-240.png" width="744" />
+        <splash height="1920" platform="windows" src="res/screen/windows/SplashScreenPhone.scale-240.png" width="1152" />
+    </platform>
+    <preference name="SplashScreenDelay" value="3000" />
+    <plugin name="cordova-plugin-code-push" spec="^1.11.15" />
+    <plugin name="cordova-plugin-zip" spec="^3.1.0" />
+    <plugin name="cordova-plugin-whitelist" spec="^1.3.3" />
+    <plugin name="cordova-plugin-statusbar" spec="^2.4.2" />
+    <plugin name="cordova-plugin-vibration" spec="^3.1.0" />
+    <plugin name="cordova-plugin-network-information" spec="^2.0.1" />
+    <plugin name="cordova-plugin-inappbrowser" spec="^3.0.0" />
+    <plugin name="cordova-plugin-globalization" spec="^1.11.0" />
+    <plugin name="cordova-plugin-geolocation" spec="^4.0.1" />
+    <plugin name="cordova-plugin-dialogs" spec="^2.0.1" />
+    <plugin name="cordova-plugin-device" spec="^2.0.2" />
+    <plugin name="phonegap-plugin-barcodescanner" spec="^8.0.1">
+        <param name="CAMERA_USAGE_DESCRIPTION" value="To scan barcodes." />
+    </plugin>
+    <plugin name="cordova-plugin-nativestorage" spec="^2.3.2" />
+    <plugin name="cordova-plugin-splashscreen" spec="^5.0.2" />
+    <plugin name="cordova-plugin-appcenter-push" spec="^0.2.1" />
+    <plugin name="cordova-plugin-appcenter-crashes" spec="^0.2.1" />
+    <plugin name="cordova-plugin-file" spec="^4.3.3" />
+    <plugin name="cordova-plugin-file-transfer" spec="^1.6.3" />
+    <plugin name="cordova-plugin-appcenter-analytics" spec="^0.2.1" />
+    <plugin name="cordova-plugin-app-version" spec="^0.1.9" />
+    <engine name="ios" spec="~4.5.5" />
+    <plugin name="cordova-plugin-camera" spec="^4.0.3" />
+    <plugin name="cordova-plugin-ios-camera-permissions" spec="1.2.0">
+        <variable name="CAMERA_USAGE_DESCRIPTION" value="To scan barcode" />
+        <variable name="MICROPHONE_USAGE_DESCRIPTION" value="Certifer carrier tracking" />
+        <variable name="PHOTOLIBRARY_ADD_USAGE_DESCRIPTION" value="Capture bill status" />
+        <variable name="PHOTOLIBRARY_USAGE_DESCRIPTION" value="save and upload last bill status" />
+    </plugin>
+</widget>

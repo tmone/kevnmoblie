@@ -1,0 +1,14 @@
+{
+    "AppCenter": {
+        "name": "AppCenter",
+        "type": "podspec",
+        "spec": "",
+        "count": 3
+    },
+    "AppCenter/Push": {
+        "name": "AppCenter/Push",
+        "type": "podspec",
+        "spec": "",
+        "count": 1
+    }
+}

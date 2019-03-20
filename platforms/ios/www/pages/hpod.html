@@ -1,0 +1,277 @@
+<template>
+    <div class="page">
+        <div class="navbar" style="background-color:darkorange!important; color:white!important;">
+            <div class="navbar-inner sliding">
+                <div class="left">
+                    <a href="#" class="link back color-blue">
+                        <i class="fas fa-chevron-left" style="color: white"></i>
+                        <span class="ios-only">Back</span>
+                    </a>
+                </div>
+                <div class="title">Đơn hàng thành công</div>
+            </div>
+        </div>
+        <div class="page-content">
+            <div id="successPOD"></div>
+        </div>
+    </div>
+</template>
+<style>
+    p {
+        margin: 10px 0;
+    }
+</style>
+<script>
+    return {
+        // Lifecycle Hooks
+        beforeCreate: function () {
+            console.log('componentBeforeCreate', this)
+        },
+        created: function () {
+            console.log('componentCreated', this);
+        },
+        beforeMount: function () {
+            console.log('componentBeforeMount', this)
+        },
+        mounted: function () {
+            console.log('componentMounted', this);
+        },
+        beforeDestroy: function () {
+            console.log('componentBeforeDestroy', this);
+        },
+        destroyed: function () {
+            console.log('componentDestroyed', this);
+        },
+        // Component Data
+        data: function () {
+            // Must return an object
+            return {
+                server: this.$app.data.serverUrl,
+                push: this.$app.data.pushBill
+            }
+        },
+        // Component Methods
+        methods: {
+            openAlert: function () {
+                var self = this;
+                self.$app.dialog.alert('Hello World');
+            },
+        },
+        // Page Events
+        on: {
+            pageMounted: function (e, page) {
+                console.log('pageMounted', page);
+            },
+            pageInit: function (e, page) {
+                console.log('pageInit', page);
+                //debugger;
+                $("#successPOD").dxDataGrid({
+                    dataSource: {
+                        store: app.data.store,                        
+                    },
+                    scrolling: {
+                        mode: "virtual"
+                    },
+                    selection: {
+                        mode: "single"
+                    },
+                    // searchPanel: {
+                    //   visible: true,
+                    //   width: '100%',
+                    //   placeholder: "Tìm..."
+                    // },
+                    //hoverStateEnabled: true,
+                    showColumnHeaders: false,
+                    showBorders: false,
+                    showColumnLines: false,
+                    showRowLines: true,
+                    filterValue: ["PRO", "=", 1],
+                    columns: [
+                        {
+                            dataField: "Id",
+                            allowSearch: false,
+                            visible: false,
+                            editOptions: {
+                                visible: false
+                            }
+                        },
+                        {
+                            dataField: "PRO",
+                            allowSearch: false,
+                            visible: false,
+                            editOptions: {
+                                visible: false
+                            },
+                            sortOrder: "desc"
+                        },
+                        {
+                            dataField: "Consignment_No",
+                            allowSorting: false,
+                            caption: "Số VĐ",
+                            // headerCellTemplate: function (head, info) {
+                            //   var tmp = `<div class="item-content">
+                            //     <div class="item-inner">    
+                            //       <div class="item-title"><strong>Số vận đơn</strong></div>         
+                            //       <div class="item-after after-fix">
+                            //         <span id="totalCountNOT" class="badge badge-fix">0</span>
+                            //         <span id="totalCountDEL" class="badge color-red badge-fix">0</span>
+                            //         <span id="totalCountPOD" class="badge color-green badge-fix">0</span>
+                            //         <span id="totalCountRET" class="badge color-orange badge-fix">0</span>
+                            //         <a id="search" href="#" >
+                            //           <span class="badge color-blue badge-fix"><i class="f7-icons" style="font-size:12px">search</i></span>
+                            //         </a>
+                            //       </div>                  
+                            //     </div>
+                            //   </div>`;
+                            //   head.append(tmp);
+                            //   setTimeout(function () {
+                            //     if (app.store) {
+                            //       app.store.load().done(function (a) {
+                            //         var cPOD = 0;
+                            //         var cRET = 0;
+                            //         var cDEL = 0;
+                            //         var cNOT = 0;
+                            //         if (a) {
+                            //           cPOD = a.filter(x => x.PRO == 1).length;
+                            //           cRET = a.filter(x => x.PRO == 2).length;
+                            //           cDEL = a.filter(x => x.PRO == 3).length;
+                            //           cNOT = a.filter(x => x.PRO == 4).length;
+                            //         }
+                            //         $('#totalCountPOD').text(cPOD);
+                            //         $('#totalCountRET').text(cRET);
+                            //         $('#totalCountDEL').text(cDEL);
+                            //         $('#totalCountNOT').text(cNOT);
+
+                            //         if (cNOT == 0) {
+                            //           setTimeout(function () { $('#successPOD').dxDataGrid("instance").refresh(); }, 30000);
+                            //         }
+
+                            //       });
+                            //     }
+                            //     $$('#search').on('click', function () {
+                            //       app.dialog.prompt('Tìm? Bấm Ok để tải dữ liệu', function (name) {
+                            //         if (name == "") {
+                            //           app.gridComponent.refresh();
+                            //         } else {
+                            //           app.gridComponent.searchByText(name);
+                            //         }
+
+                            //       })
+                            //     });
+
+                            //   }, 500);
+
+                            // },
+                            cellTemplate: function (container, options) {
+                                var co = "color-gray color-green color-orange color-red color-gray".split(' ');
+
+                                $("<div class=''>").append(
+                                    $("<div class=''>").append(
+                                        $("<div class='row'>").append(
+                                            $("<div class='col-10'><a class='" + co[options.data.PRO] + "'><i class='f7-icons style='font-size:16px'>circle_fill</i></a>"),
+                                            $("<div class='col-80'><span style='color:blue;font-weight:600; font-size:18px;text-decoration: underline;'>" + options.data.Consignment_No + "</span>"),
+                                            $("<div class='col-10'>").text("ND")
+                                        ),
+                                        $("<div class='row'>").append(
+                                            $("<div class='col-10'><a class='icon link'><img src='img/ic_call.png' style='height:24px'/></a>"),
+                                            $("<div class='col-90'>").text(options.data.Recipient_Name || "N/A")
+                                        ),
+                                        $("<div class='row' style='min-height:24px'>").append(
+                                            $("<div class='col' >").text(options.data.Recipient_Address || " ")),
+                                        $("<div class='row' style='min-height:24px'>").append(
+                                            $("<div class='col'>").append(
+                                                $("<span>").text(options.data.Recipient_Phone_No || " ")),
+                                            $("<div class='col'>").append(
+                                                $("<span>").text(options.data.Recipient_Contact_Person || " "))
+                                        ),
+                                        $("<div class='row' style='min-height:24px'>").append(
+                                            $("<div class='col'>").text(options.data.Remark + " ")
+                                        )
+                                    )
+                                ).appendTo(container);
+                                //$(container).css("padding", "0px");
+                            }
+                        },
+                        {
+                            dataField: "Created_Date",
+                            visible: false,
+                            editOptions: {
+                                visible: false
+                            },
+                            sortOrder: "desc"
+                        },
+                        {
+                            dataField: "Recipient_Name",
+                            visible: false,
+                            editOptions: {
+                                visible: false
+                            },
+                        },
+                        {
+                            dataField: "Recipient_Contact_Person",
+                            visible: false,
+                            editOptions: {
+                                visible: false
+                            },
+                        },
+                        {
+                            dataField: "Recipient_Phone_No",
+                            visible: false,
+                            editOptions: {
+                                visible: false
+                            },
+                        },
+                        {
+                            dataField: "Recipient_Address",
+                            visible: false,
+                            editOptions: {
+                                visible: false
+                            },
+                        },
+                        {
+                            dataField: "Remark",
+                            visible: false,
+                            editOptions: {
+                                visible: false
+                            },
+                        },
+                        {
+                            dataField: "Special_Delivery_Remark",
+                            visible: false,
+                            editOptions: {
+                                visible: false
+                            },
+                        }
+                    ],
+                    remoteOperations: true,
+                    onSelectionChanged: function (e) {
+                        app.data.lastChoice = {};
+                        var data = e.selectedRowsData;
+                        if (data.length > 0) {
+                            if (data[0].PRO > 2) {
+                                app.data.lastChoice = data[0];
+                                mainView.router.navigate('/bill/' + data[0].Consignment_No + '/');
+                            }
+                        }
+                    }
+                });
+            },
+            pageBeforeIn: function (e, page) {
+                console.log('pageBeforeIn', page);
+            },
+            pageAfterIn: function (e, page) {
+                console.log('pageAfterIn', page);
+            },
+            pageBeforeOut: function (e, page) {
+                console.log('pageBeforeOut', page);
+            },
+            pageAfterOut: function (e, page) {
+                console.log('pageAfterOut', page);
+            },
+            pageBeforeRemove: function (e, page) {
+                console.log('pageBeforeRemove', page);
+                //location.reload();
+            },
+        }
+    }    
+</script>

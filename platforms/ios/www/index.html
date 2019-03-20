@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self' * 'unsafe-inline' 'unsafe-eval' data: gap: content:; media-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap: content:">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="theme-color" content="#000">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="msapplication-tap-highlight" content="no">
+  <title>Kerry Express VN</title>
+
+  <link rel="stylesheet" href="lib/framework7/css/framework7.min.css">
+  <link rel="stylesheet" href="css/icons.css">
+  <link rel="stylesheet" href="css/app.css">
+  <!-- <link rel="stylesheet" href="css/font-awesome.min.css"> -->
+  <!-- <link rel="stylesheet" href="css/AdminLTE.min.css">
+  <link rel="stylesheet" href="css/AdminLTE.min.css"> -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+    crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="css/dx.common.css" />
+  <link rel="stylesheet" type="text/css" href="css/dx.material.orange.light.css" />
+  <style>
+    .navbar::after{        
+        height: 2px!important;        
+        background: darkorange!important;
+        
+      }
+      .navbar{
+        color: black!important;
+        background-color: white!important;
+      }
+      .badge-left{
+        line-height: 16px;
+        height: 16px;
+        border-radius: 16px;
+        padding: 5px;
+        min-width: 16px;
+        font-family: -apple-system,SF UI Text,Helvetica Neue,Helvetica,Arial,sans-serif;
+        font-size: 12px;
+        position: relative;
+        z-index: 10;
+        right: -15px;
+        top: -15px;
+        background-color: white;
+        color: #2196f3;
+        text-align: center;
+      }
+      .badge-right{
+        line-height: 16px;
+        height: 16px;
+        border-radius: 16px;
+        padding: 5px;
+        min-width: 16px;
+        font-family: -apple-system,SF UI Text,Helvetica Neue,Helvetica,Arial,sans-serif;
+        font-size: 12px;
+        position: relative;
+        z-index: 10;
+        left: -15px;
+        top: -15px;
+        background-color: white;
+        color: #2196f3;
+        text-align: center;
+      }
+      .fab-label-black{
+        background-color: black;
+        opacity: 0.8;
+        color: white;
+      }
+      .links-list a:after{
+        height: 0px!important;
+      }
+      .links-list a{
+        background: none;
+        padding-left: 10px!important;
+        padding-right: 10px!important;
+      }
+      .segmented .button.fix-orange:not(.tab-link-active){
+        color:darkorange!important;
+      }
+      .fix-orange.tab-link-active{
+        height: 100%;
+        border-radius: 0px!important;
+      }
+
+    </style>
+</head>
+
+<body class="color-orange">
+  <div id="app">
+    <!-- Status bar overlay for fullscreen mode-->
+    <div class="statusbar"></div>
+    <!-- Left panel with cover effect-->
+    <div class="panel panel-left panel-cover">
+      <div class="view">
+        <div class="page">
+          <div class="page-content">
+            <div class="block-title" style="min-height:50px;background-color: darkorange;padding: 16px;margin: 0px;color:black;">
+              <div>
+                <i class="icon f7-icons" style="font-size:64px">person_round</i>
+                <span id="user-name" style="font-weight:900;font-size: 32px;color:white;padding-left: 20px">53265</span>
+              </div>
+              <div class="user_panel" style="color: white;padding: 5px;">
+                <strong><span class="user-name" style="font-weight:700">53265</span></strong><br>
+                <span id="user-fullname" style="display: none;">Nguyễn Văn Thịnh</span><br>
+                <span id="last-login" style="display: none;">16H50 31/12/2018</span>
+                <span style=" right: 10px; bottom: 10px; position: absolute; ">PRO</span>
+              </div>
+            </div>
+            <div class="list links-list">
+              <ul class='sidebar-menu tree'>
+                <li class="treeview"><a href="/hpod/">
+                    <span><i class="f7-icons" style="font-size: 20px;">drawer</i>
+                      Đơn hàng thành công</span>
+                    <div class="right">
+                      <span id="COUNT_PODR_I" style="color:darkgreen">0</span>
+                      |
+                      <span id="COUNT_PODR_T" style="color:darkgreen;font-weight: bold">0</span>
+                    </div>
+                  </a>
+                </li>
+                <li class="treeview"><a href="/pup/">
+                    <span><i class="f7-icons" style="font-size: 20px;">drawer</i>
+                      PUP Lô hàng</span>
+                    <div class="right">
+                      <span id="COUNT_PUPR_I">0</span>
+                      |
+                      <span id="COUNT_PUPR_T">0</span>
+                    </div>
+                  </a>
+                </li>
+                <li class="treeview"><a href="/history/">
+                    <span><i class="f7-icons" style="font-size: 20px;">drawer</i>
+                      Lịch sử hoạt động quét</span>
+                  </a>
+                </li>
+                <li class="treeview"><a href="#">
+                    <span><i class="fas fa-hand-holding-usd" style="font-size: 20px;"></i>
+                      Thu COD</span>
+                  </a>
+                </li>
+                <li class="treeview"><a href="#" class="sync">
+                    <span><i class="icon material-icons" style="font-size: 20px;">autorenew</i>
+                      Đồng bộ với Server</span>
+                    <div class="right">
+                      <span id="COUNT_SYNC">0</span>
+                    </div>
+                  </a>
+                </li>
+
+              </ul>
+              <ul class='sidebar-menu tree'>
+                <li class="treeview"><a href="/config/" class="link link-icon">
+                    <span><i class="f7-icons" style="font-size: 20px;">gear</i>
+                      Cài đặt</span>
+                  </a>
+                </li>
+                <li class="treeview"><a href="#" class="link link-icon language">
+                    <span><i class="f7-icons" style="font-size: 20px;">world</i>
+                      English</span>
+                  </a>
+                </li>
+                <li class="treeview"><a href="/about/">
+                    <span><i class="f7-icons" style="font-size: 20px;">info_round</i>
+                      Giới thiệu</span>
+                  </a>
+                </li>
+                <li class="treeview"><a id="dang-xuat">
+                    <span><i class="fas fa-sign-out-alt fa-rotate-270" style="font-size: 20px;"></i>
+                      Đăng xuất</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Your main view, should have "view-main" class -->
+    <div class="view view-main ios-edges">
+      <!-- Page, data-name contains page name which can be used in callbacks -->
+      <div class="page " data-name="home">
+        <!-- Top Navbar -->
+        <div class="navbar">
+          <div class="navbar-inner">
+            <div class="left">
+              <a href="#" class="link icon-only panel-open color-black" data-panel="left">
+                <i class="icon f7-icons ios-only">menu</i>
+                <i class="icon material-icons md-only">menu</i>
+              </a>
+            </div>
+            <div class="title sliding">
+              <a class="link icon-only md-only">
+                <span class="badge-left COUNT_DEL"style="color:darkorange">0</span>
+                <p class="segmented">
+                  <button class="button button-outline button-active" style="width: 100px;background-color: darkorange;"> GIAO
+                  
+                  </button>
+                  <button class="button button-outline" style="width: 100px;color: darkorange;display:none;"> NHẬN </button>
+
+                </p>
+                <span class="badge-right " id="COUNT_PIC" style="color:darkorange;display:none;">0</span>
+              </a>
+              <a class="link icon-only ios-only color-orange" style="width: 100px;">
+                GIAO &nbsp;
+                <span class="badge COUNT_DEL">0</span>
+              </a>
+            </div>
+            <div class="right">
+              <a class="link icon-only scan-barcode color-black">
+                <i class="fa fa-qrcode" style="font-size:24px"></i>
+              </a>
+              <a class="link icon-only search-barcode color-black">
+                <i class="fa fa-search" style="font-size:24px"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- Scrollable page content-->
+        <div class="page-content">
+          <div id="grid-data"></div>
+        </div>
+
+        <div class="fab fab-extended fab-left-bottom">
+          <a class="link icon-only switch-page" style="background-color: slateblue;">
+            <i class="icon material-icons">compare_arrows</i>
+          </a>
+        </div>
+        <div class="fab fab-right-bottom  color-orange">
+          <a href="#">
+            <!-- Icons For iOS Theme -->
+            <i class="icon f7-icons ios-only">add</i>
+            <i class="icon f7-icons ios-only">close</i>
+            <!-- Icons For MD Theme -->
+            <i class="icon material-icons md-only">add</i>
+            <i class="icon material-icons md-only">close</i>
+          </a>
+          <div class="fab-buttons fab-buttons-top">
+            <a class="fab-label-button color-green" href="#" style="background-color:green">
+              <img src="img/delivery-truck.png" style="height:24px;">
+              <span class="fab-label  fab-label-black">Giao hàng</span>
+            </a>
+            <a class="fab-label-button " href="/ofd/" style="background-color: darkcyan">
+              <img src="img/delivery-package.png" style="height:24px;">
+              <span class="fab-label  fab-label-black">OFD</span>
+            </a>
+            <a class="fab-label-button " href="#" style="background-color: darkcyan">
+              <img src="img/delivery-package.png" style="height:24px;">
+              <span class="fab-label  fab-label-black">SOP-LH</span>
+            </a>
+            <a class="fab-label-button " href="#" style="background-color: darkcyan">
+              <img src="img/delivery-package.png" style="height:24px;">
+              <span class="fab-label  fab-label-black">SIP-LH</span>
+            </a>
+            <a class="fab-label-button color-gray" href="#">
+              <img src="img/delivery-truck.png" style="height:24px;">
+              <span class="fab-label  fab-label-black">TKA</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Login Screen -->
+    <div class="login-screen" id="my-login-screen">
+      <div class="view">
+        <div class="page">
+          <div class="page-content login-screen-content">
+            <div class="login-screen-title"><img src="img/logo2.png" style="width: 100%"></div>
+            <div class="list">
+              <ul>
+                <li class="item-content item-input">
+                  <div class="item-inner">
+                    <div class="item-title item-label">Tên đăng nhập</div>
+                    <div class="item-input-wrap">
+                      <input type="text" name="username" placeholder="Mã nhân viên...">
+                    </div>
+                  </div>
+                </li>
+                <li class="item-content item-input">
+                  <div class="item-inner">
+                    <div class="item-title item-label">Mật khẩu</div>
+                    <div class="item-input-wrap">
+                      <input type="password" name="password" placeholder="Mật khẩu...">
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="list">
+              <ul>
+                <li style="margin:10px">
+                  <a href="#" class="button button-big button-raised button-fill list-button login-button color-orange"
+                    style="color:white">ĐĂNG
+                    NHẬP</a>
+                </li>
+              </ul>
+              <div class="block-footer" style="position: fixed;bottom:10px;right:10px;z-index: -2;">Version: <span class='version'>1.0.4</span></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Cordova -->
+
+  <script src="cordova.js"></script>
+
+  <!-- DevExtreme -->
+  <script src="js/jquery-3.1.0.min.js"></script>
+  <script src="js/dx.all.js"></script>
+  <!-- <script src="js/cldr.min.js"></script>
+  <script src="js/currency.min.js"></script>
+  <script src="js/date.min.js"></script>
+  <script src="js/number.min.js"></script>
+  <script src="js/message.min.js"></script> -->
+  <script src="js/jszip.min.js"></script>
+  <script src="js/dx.aspnet.data.js"></script>
+
+
+  <!-- Framework7 library -->
+  <script src="lib/framework7/js/framework7.min.js"></script>
+
+  <!-- App routes -->
+  <script src="js/routes.js"></script>
+
+  <!-- Your custom app scripts -->
+  <script src="js/app.js"></script>
+
+
+</body>
+
+</html>

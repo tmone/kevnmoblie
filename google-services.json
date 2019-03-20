@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "376308105760",
+    "firebase_url": "https://kesmobile-1540423282834.firebaseio.com",
+    "project_id": "kesmobile-1540423282834",
+    "storage_bucket": "kesmobile-1540423282834.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:376308105760:android:204922aef21f8a5f",
+        "android_client_info": {
+          "package_name": "vn.com.kerryexpress.kesmobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "376308105760-6g9o04lleq881ta20vl812ptbclvdm7c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjSClgIE-DZ4BULjj9L_qu2hQ9Vzi8osg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
