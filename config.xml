@@ -30,12 +30,7 @@
     <platform name="ios">
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
-        <preference name="BackupWebStorage" value="none" />
-        <preference name="APPCENTER_ANALYTICS_ENABLE_IN_JS" value="true" />
-        <preference name="APPCENTER_CRASHES_ALWAYS_SEND" value="false" />
-        <preference name="APP_SECRET" value="64d1155d-8977-46f6-830c-e90125c2f1b6" />
-        <preference name="CodePushDeploymentKey" value="883VVBZ52zV0mdqiGriMayQp7LiaHJGJ7wyxE" />
-        <preference name="APPCENTER_APP_SECRET" value="64d1155d-8977-46f6-830c-e90125c2f1b6" />
+        <preference name="BackupWebStorage" value="none" />  
     </platform>
     <preference name="DisallowOverscroll" value="true" />
     <platform name="android">
@@ -59,9 +54,6 @@
         <splash density="port-xxxhdpi" src="res/screen/android/drawable-port-xxxhdpi-screen.png" />
     </platform>
     <platform name="ios">
-        <edit-config file="*-Info.plist" mode="merge" target="NSCameraUsageDescription">
-            <string>To scan barcodes</string>
-        </edit-config>
         <icon height="57" platform="ios" src="res/icon/ios/icon.png" width="57" />
         <icon height="114" platform="ios" src="res/icon/ios/icon@2x.png" width="114" />
         <icon height="40" platform="ios" src="res/icon/ios/icon-40.png" width="40" />
