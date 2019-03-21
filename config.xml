@@ -117,6 +117,10 @@
     <plugin name="cordova-plugin-device" spec="^2.0.2" />
     <plugin name="phonegap-plugin-barcodescanner" spec="^8.0.1">
         <param name="CAMERA_USAGE_DESCRIPTION" value="To scan barcodes." />
+        <param name="CAMERA_USAGE_DESCRIPTION" value="To scan barcode" />
+        <param name="MICROPHONE_USAGE_DESCRIPTION" value="Certifer carrier tracking" />
+        <param name="PHOTOLIBRARY_ADD_USAGE_DESCRIPTION" value="Capture bill status" />
+        <param name="PHOTOLIBRARY_USAGE_DESCRIPTION" value="save and upload last bill status" />
     </plugin>
     <plugin name="cordova-plugin-nativestorage" spec="^2.3.2" />
     <plugin name="cordova-plugin-splashscreen" spec="^5.0.2" />
@@ -128,10 +132,4 @@
     <plugin name="cordova-plugin-app-version" spec="^0.1.9" />
     <engine name="ios" spec="~4.5.5" />
     <plugin name="cordova-plugin-camera" spec="^4.0.3" />
-    <plugin name="cordova-plugin-ios-camera-permissions" spec="1.2.0">
-        <variable name="CAMERA_USAGE_DESCRIPTION" value="To scan barcode" />
-        <variable name="MICROPHONE_USAGE_DESCRIPTION" value="Certifer carrier tracking" />
-        <variable name="PHOTOLIBRARY_ADD_USAGE_DESCRIPTION" value="Capture bill status" />
-        <variable name="PHOTOLIBRARY_USAGE_DESCRIPTION" value="save and upload last bill status" />
-    </plugin>
 </widget>
