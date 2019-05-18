@@ -1,74 +1,49 @@
-		<?xml version="1.0" encoding="UTF-8"?>
-	<widget xmlns = "http://www.w3.org/ns/widgets"
-		xmlns:gap = "http://phonegap.com/ns/1.0"
-		xmlns:android = "http://schemas.android.com/apk/res/android"
-		id        = "vn.com.kerryexpress.kevnmobile"
-		versionCode=""
-		version   = "1.0.9">
-		<name>KEVN Mobile		</name>
-		<description>A tool for pickup and delivery Kerry Express VN.		</description>
-		<author href="https://kes.kerryexpress.com.vn" email="thinh.nguyen@kerryexpres.com.vn">IT Kerry Express VN Team		</author>
-		<feature name="http://api.phonegap.com/1.0/battery" />
-		<feature name="http://api.phonegap.com/1.0/camera" />
-		<feature name="http://api.phonegap.com/1.0/contacts" />
-		<feature name="http://api.phonegap.com/1.0/file" />
-		<feature name="http://api.phonegap.com/1.0/geolocation" />
-		<feature name="http://api.phonegap.com/1.0/media" />
-		<feature name="http://api.phonegap.com/1.0/network" />
-		<feature name="http://api.phonegap.com/1.0/notification" />
-		<plugin name="cordova-plugin-camera"  spec="^4.0.3" />
-		<plugin name="cordova-plugin-device"  spec="^2.0.2" />
-		<plugin name="cordova-plugin-dialogs"  spec="^2.0.1" />
-		<plugin name="cordova-plugin-file"  spec="^4.3.3" />
-		<plugin name="cordova-plugin-file-transfer"  spec="^1.6.3" />
-		<plugin name="cordova-plugin-geolocation"  spec="^4.0.1" />
-		<plugin name="cordova-plugin-globalization"  spec="^1.11.0" />
-		<plugin name="cordova-plugin-inappbrowser"  spec="^3.0.0" />
-		<plugin name="cordova-plugin-network-information"  spec="^2.0.1" />
-		<plugin name="cordova-plugin-splashscreen"  />
-		<plugin name="cordova-plugin-vibration"  spec="^3.1.0" />
-		<plugin name="cordova-plugin-statusbar"  spec="^2.4.2" />
-		<plugin name="undefined" version="^1.3.3" source="npm"  />
-		<plugin name="undefined" version="^8.0.1" source="npm"  />
-		<plugin name="undefined" version="^2.3.2" source="npm"  />
-		<plugin name="undefined" version="^0.1.9" source="npm"  />
-		<plugin name="undefined" version="^1.3.3" source="npm"  />
-		<plugin name="undefined" version="^8.0.1" source="npm"  />
-		<plugin name="undefined" version="^2.3.2" source="npm"  />
-		<plugin name="undefined" version="^0.1.9" source="npm"  />
-		<preference name="phonegap-version" value="cli-6.3.0" />
-		<preference name="android-build-tool" value="gradle" />
-		<preference name="orientation" value="default" />
-		<preference name="fullscreen" value="false" />
-		<preference name="target-device" value="universal" />
-		<preference name="webviewbounce" value="true" />
-		<preference name="prerendered-icon" value="false" />
-		<preference name="stay-in-webview" value="true" />
-		<preference name="ios-statusbarstyle" value="default" />
-		<preference name="detect-data-types" value="true" />
-		<preference name="exit-on-suspend" value="true" />
-		<preference name="show-splash-screen-spinner" value="true" />
-		<preference name="auto-hide-splash-screen" value="true" />
-		<preference name="FadeSplashScreen " value="true" />
-		<preference name="EnableViewportScale" value="true" />
-		<preference name="MediaPlaybackRequiresUserAction" value="false" />
-		<preference name="AllowInlineMediaPlayback" value="true" />
-		<preference name="BackupWebStorage" value="none" />
-		<preference name="TopActivityIndicator" value="white" />
-		<preference name="KeyboardDisplayRequiresUserAction" value="true" />
-		<preference name="KeyboardShrinksView " value="true" />
-		<preference name="HideKeyboardFormAccessoryBar" value="true" />
-		<preference name="SuppressesIncrementalRendering" value="true" />
-		<preference name="windows-identity-name" value="" />
-		<preference name="android-installLocation" value="auto" />
-		<preference name="SplashScreenDelay" value="3000" />
-		<preference name="ErrorUrl" value="null" />
-		<preference name="BackgroundColor" value="0x000000" />
-		<preference name="DisallowOverscroll" value="true" />
-		<preference name="LoadingDialog" value="," />
-		<preference name="LoadUrlTimeoutValue" value="null" />
-		<platform name="ios">
-		<icon height="57" platform="ios" src="res/icon/ios/icon.png" width="57" />
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="vn.com.kerryexpress.kevnmobile" version="1.0.9" versionCode="" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:gap="http://phonegap.com/ns/1.0">
+    <name>KEVN Mobile		</name>
+    <description>A tool for pickup and delivery Kerry Express VN.		</description>
+    <author email="thinh.nguyen@kerryexpres.com.vn" href="https://kes.kerryexpress.com.vn">IT Kerry Express VN Team		</author>
+    <feature name="http://api.phonegap.com/1.0/battery" />
+    <feature name="http://api.phonegap.com/1.0/camera" />
+    <feature name="http://api.phonegap.com/1.0/contacts" />
+    <feature name="http://api.phonegap.com/1.0/file" />
+    <feature name="http://api.phonegap.com/1.0/geolocation" />
+    <feature name="http://api.phonegap.com/1.0/media" />
+    <feature name="http://api.phonegap.com/1.0/network" />
+    <feature name="http://api.phonegap.com/1.0/notification" />
+    <preference name="phonegap-version" value="cli-6.3.0" />
+    <preference name="android-build-tool" value="gradle" />
+    <preference name="orientation" value="default" />
+    <preference name="fullscreen" value="false" />
+    <preference name="target-device" value="universal" />
+    <preference name="webviewbounce" value="true" />
+    <preference name="prerendered-icon" value="false" />
+    <preference name="stay-in-webview" value="true" />
+    <preference name="ios-statusbarstyle" value="default" />
+    <preference name="detect-data-types" value="true" />
+    <preference name="exit-on-suspend" value="true" />
+    <preference name="show-splash-screen-spinner" value="true" />
+    <preference name="auto-hide-splash-screen" value="true" />
+    <preference name="FadeSplashScreen " value="true" />
+    <preference name="EnableViewportScale" value="true" />
+    <preference name="MediaPlaybackRequiresUserAction" value="false" />
+    <preference name="AllowInlineMediaPlayback" value="true" />
+    <preference name="BackupWebStorage" value="none" />
+    <preference name="TopActivityIndicator" value="white" />
+    <preference name="KeyboardDisplayRequiresUserAction" value="true" />
+    <preference name="KeyboardShrinksView " value="true" />
+    <preference name="HideKeyboardFormAccessoryBar" value="true" />
+    <preference name="SuppressesIncrementalRendering" value="true" />
+    <preference name="windows-identity-name" value="" />
+    <preference name="android-installLocation" value="auto" />
+    <preference name="SplashScreenDelay" value="3000" />
+    <preference name="ErrorUrl" value="null" />
+    <preference name="BackgroundColor" value="0x000000" />
+    <preference name="DisallowOverscroll" value="true" />
+    <preference name="LoadingDialog" value="," />
+    <preference name="LoadUrlTimeoutValue" value="null" />
+    <platform name="ios">
+        <icon height="57" platform="ios" src="res/icon/ios/icon.png" width="57" />
         <icon height="114" platform="ios" src="res/icon/ios/icon@2x.png" width="114" />
         <icon height="40" platform="ios" src="res/icon/ios/icon-40.png" width="40" />
         <icon height="80" platform="ios" src="res/icon/ios/icon-40@2x.png" width="80" />
@@ -93,34 +68,64 @@
         <splash height="2048" platform="ios" src="res/screen/ios/Default-Portrait@2x~ipad.png" width="1536" />
         <splash height="1024" platform="ios" src="res/screen/ios/Default-Portrait~ipad.png" width="768" />
         <splash height="960" platform="ios" src="res/screen/ios/Default@2x~iphone.png" width="640" />
-        <splash height="480" platform="ios" src="res/screen/ios/Default~iphone.png" width="320" /></platform>
-		<platform name="android">
-		</platform>
-		<platform name="winphone">
-		</platform>
-		 <icon src="icon.png" />
-		<allow-intent href="http://*/*" />
-		<allow-intent href="https://*/*" />
-		<allow-intent href="tel:*" />
-		<allow-intent href="sms:*" />
-		<allow-intent href="mailto:*" />
-		<allow-intent href="geo:*" />
-		<platform name="ios" >
-		<allow-intent href="itms:*" />
-		</platform>
-		<platform name="ios" >
-		<allow-intent href="itms-apps:*" />
-		</platform>
-		<allow-intent href="http://*/*" />
-		<allow-intent href="https://*/*" />
-		<allow-intent href="tel:*" />
-		<allow-intent href="sms:*" />
-		<allow-intent href="mailto:*" />
-		<allow-intent href="geo:*" />
-		<platform name="ios" >
-		<allow-intent href="itms:*" />
-		</platform>
-		<platform name="ios" >
-		<allow-intent href="itms-apps:*" />
-		</platform>
-		</widget>
+        <splash height="480" platform="ios" src="res/screen/ios/Default~iphone.png" width="320" />
+    </platform>
+    <platform name="android">
+    </platform>
+    <platform name="winphone">
+    </platform>
+    <icon src="icon.png" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <platform name="ios">
+        <allow-intent href="itms:*" />
+    </platform>
+    <platform name="ios">
+        <allow-intent href="itms-apps:*" />
+    </platform>
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <platform name="ios">
+        <allow-intent href="itms:*" />
+    </platform>
+    <platform name="ios">
+        <allow-intent href="itms-apps:*" />
+    </platform>
+    <engine name="ios" spec="^4.5.5" />
+    <plugin name="cordova-plugin-code-push" spec="^1.11.15" />
+    <plugin name="cordova-plugin-zip" spec="^3.1.0" />
+    <plugin name="cordova-plugin-whitelist" spec="^1.3.3" />
+    <plugin name="cordova-plugin-statusbar" spec="^2.4.2" />
+    <plugin name="cordova-plugin-vibration" spec="^3.1.0" />
+    <plugin name="cordova-plugin-network-information" spec="^2.0.1" />
+    <plugin name="cordova-plugin-inappbrowser" spec="^3.0.0" />
+    <plugin name="cordova-plugin-globalization" spec="^1.11.0" />
+    <plugin name="cordova-plugin-geolocation" spec="^4.0.1" />
+    <plugin name="cordova-plugin-dialogs" spec="^2.0.1" />
+    <plugin name="cordova-plugin-device" spec="^2.0.2" />
+    <plugin name="phonegap-plugin-barcodescanner" spec="^8.0.1" />
+    <plugin name="cordova-plugin-nativestorage" spec="^2.3.2" />
+    <plugin name="cordova-plugin-splashscreen" spec="^5.0.2" />
+    <plugin name="cordova-plugin-appcenter-push" spec="^0.2.1" />
+    <plugin name="cordova-plugin-appcenter-crashes" spec="^0.2.1" />
+    <plugin name="cordova-plugin-file" spec="^4.3.3" />
+    <plugin name="cordova-plugin-file-transfer" spec="^1.6.3" />
+    <plugin name="cordova-plugin-appcenter-analytics" spec="^0.2.1" />
+    <plugin name="cordova-plugin-app-version" spec="^0.1.9" />
+    <plugin name="cordova-plugin-camera" spec="^4.0.3" />
+    <plugin name="cordova-plugin-ios-camera-permissions" spec="1.2.0">
+        <variable name="CAMERA_USAGE_DESCRIPTION" value="To scan barcode" />
+        <variable name="MICROPHONE_USAGE_DESCRIPTION" value="Certifer carrier tracking" />
+        <variable name="PHOTOLIBRARY_ADD_USAGE_DESCRIPTION" value="Capture bill status" />
+        <variable name="PHOTOLIBRARY_USAGE_DESCRIPTION" value="save and upload last bill status" />
+    </plugin>
+    <plugin name="undefined" spec="^1.3.3" />
+</widget>

@@ -1,0 +1,417 @@
+<template>
+    <div class="page">
+        <div class="navbar" style="background-color:darkorange!important; color:white!important;">
+            <div class="navbar-inner sliding">
+                <div class="left">
+                    <a href="#" class="link back color-blue">
+                        <i class="fas fa-chevron-left" style="color: white"></i>
+                    </a>
+                </div>
+                <div class="title">Năng suất</div>
+            </div>
+        </div>
+        <div class="page-content">
+            <div class="block block-strong">
+                <p>Xin chào {{user.user_name}}! &nbsp;&nbsp;<strong><span
+                            class="full_name text-color-blue"></span></strong><br /><span class="location"></span></p>
+            </div>
+            <div class="list inset result">
+                <ul>
+                    <li>
+                        <div class="item-content">
+                            <div class="item-inner segmented no-line">
+                                <div class="item-title" style="width:50%">Tháng </div>
+                                <div class="item-after" style="width:50%">
+                                    <input type="text" placeholder="Tháng..." readonly="readonly" id="picker"
+                                        style="text-align: right;" />
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title">
+                                    <div class="item-header" style="color:red;">
+                                        <a href="#" class="link aDate text-color-orange">
+                                            <i class="icon f7-icons" style="font-size:20px;">calendar</i>
+                                        </a>
+                                        Từ ngày <strong><span class='fromDate'>0</span></strong> đến ngày <strong><span
+                                                class='toDate'>0</span></strong>.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title">Khoán</div>
+                                <div class="item-after"> <span class="bill-target">0</span></div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title">Nhận</div>
+                                <div class="item-after"> <span class="bill-pickup">0</span></div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title">Giao</div>
+                                <div class="item-after"> <span class="bill-delivery">0</span></div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title">Tổng NS</div>
+                                <div class="item-after"> <span class="  bill-summary">0</span></div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title">Tiền NS</div>
+                                <div class="item-after"><strong><span
+                                            class="text-color-orange bill-money">0</span></strong></div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title">
+                                    <div class="item-header">(!) Số liệu mang tính chất tham khảo. Chi tiết sẽ được nhân
+                                        sự xuất báo cáo cuối mỗi tháng.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li style="display:none;">
+                        <div class="item-content item-input">
+                            <div class="item-inner">
+                                <div class="item-input-wrap">
+                                    <input type="text" placeholder="Select a date" readonly="readonly" id="popupDate" />
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</template>
+<style>
+    p {
+        margin: 10px 0;
+    }
+
+    .no-line::after {
+        height: 0px !important;
+    }
+</style>
+<script>
+    return {
+        // Lifecycle Hooks
+        beforeCreate: function () {
+            console.log('componentBeforeCreate', this)
+        },
+        created: function () {
+            console.log('componentCreated', this)
+        },
+        beforeMount: function () {
+            console.log('componentBeforeMount', this)
+        },
+        mounted: function () {
+            console.log('componentMounted', this);
+        },
+        beforeDestroy: function () {
+            console.log('componentBeforeDestroy', this);
+
+        },
+        destroyed: function () {
+            console.log('componentDestroyed', this);
+
+        },
+        // Component Data
+        data: function () {
+            // Must return an object
+            return {
+                user: app.data.user,
+                version: app.version,
+                popDate: null,
+            }
+        },
+        // Component Methods
+        methods: {
+            getInMonth: function (d) {
+                app.preloader.show();
+                this.clear();
+                app.request.post(
+                    app.data.serverUrl +
+                    //"http://localhost:34567" +
+                    "/api/Incentive/inmonth", {
+                        u: app.data.user.user_name,
+                        m: d
+                    }, function (rs) {
+                        var data = {};
+                        if (rs && rs.length > 0) {
+                            data = rs[0] || {};
+                        }
+                        $$(".full_name").text(data.TEN_NHAN_VIEN || "");
+
+                        if (!data.TEN_NHAN_VIEN || data.TEN_NHAN_VIEN.length < 2) {
+                            app.toast.create({
+                                text: "Nhân viên " + app.data.user.user_name + " chưa được cài đặt năng suất. Vui lòng liên hệ Phòng nhân sự công ty!",
+                                closeTimeout: 2000,
+                            }).open();
+                        }
+
+                        var dDate = new Date(d);
+                        var fDate = new Date(d);
+                        var tDate = new Date(d);
+                        fDate.setMonth(fDate.getMonth() - 1, 26);
+                        tDate.setDate(25);
+                        $$(".fromDate").text(fDate.toJSON().substr(0, 10));
+                        $$(".toDate").text(tDate.toJSON().substr(0, 10));
+
+                        $$(".location").text(data.TEN_KV || "");
+                        var target = data.SL_VD_KHOAN || 0;
+                        $$(".bill-target").text(target.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'));
+
+                        var pickup = data.SL_VD_NHAN || 0;
+                        $$(".bill-pickup").text(pickup.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'));
+                        var delivery = data.SL_VD_TRA || 0;
+                        $$(".bill-delivery").text(delivery.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'));
+                        var summary = data.SL_VD_NS || 0;
+                        $$(".bill-summary").text(summary.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'));
+
+                        var money = data.THANH_TIEN || 0;
+                        $$(".bill-money").text(money.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'));
+                        app.preloader.hide();
+                    }, function (er) {
+                        console.log(er);
+                        app.preloader.hide();
+                    }, "json");
+            },
+            getInDate: function (d) {
+                app.preloader.show();
+                this.clear();
+                app.request.post(
+                    app.data.serverUrl +
+                    //"http://localhost:34567" +
+                    "/api/Incentive/indate", {
+                        u: app.data.user.user_name,
+                        d: d,
+                    }, function (rs) {
+                        var data = {};
+                        if (rs && rs.length > 0) {
+                            data = rs[0] || {};
+                        }
+                        $$(".full_name").text(data.TEN_NHAN_VIEN || "");
+
+                        //var dDate = new Date(d);
+                        //var fDate = new Date(d);
+                        //var tDate = new Date(d);
+                        //fDate.setMonth(fDate.getMonth() - 1, 26);
+                        //tDate.setDate(25);
+                        $$(".fromDate").text(d);
+                        $$(".toDate").text(d);
+
+                        $$(".location").text(data.TEN_KV || "");
+                        var target = data.SL_VD_KHOAN || 0;
+                        $$(".bill-target").text(target.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'));
+
+                        var pickup = data.SL_VD_NHAN || 0;
+                        $$(".bill-pickup").text(pickup.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'));
+                        var delivery = data.SL_VD_TRA || 0;
+                        $$(".bill-delivery").text(delivery.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'));
+                        var summary = data.SL_VD_NS || 0;
+                        $$(".bill-summary").text(summary.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'));
+
+                        var money = data.THANH_TIEN || 0;
+                        $$(".bill-money").text(money.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'));
+                        app.preloader.hide();
+                    }, function (er) {
+                        console.log(er);
+                        app.preloader.hide();
+                    }, "json");
+            },
+            clear: function () {
+
+                //$$(".full_name").text(data.TEN_NHAN_VIEN || "");
+                //$$(".location").text(data.TEN_KV || "");
+                var target = 0;
+                $$(".bill-target").text(target.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'));
+
+                var pickup = 0;
+                $$(".bill-pickup").text(pickup.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'));
+                var delivery = 0;
+                $$(".bill-delivery").text(delivery.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'));
+                var summary = 0;
+                $$(".bill-summary").text(summary.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'));
+
+                var money = 0;
+                $$(".bill-money").text(money.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'));
+
+            }
+        },
+        // Page Events
+        on: {
+            pageMounted: function (e, page) {
+                console.log('pageMounted', page);
+            },
+            pageInit: function (e, page) {
+                var self = this;
+                console.log('pageInit', page);
+                var year = new Date().getFullYear();
+                var years = [];
+                for (var i = 0; i < 5; i++) {
+                    years.unshift("" + (year - i));
+                }
+                var months = [];
+                for (var i = 1; i <= 12; i++) {
+                    var t = "0";
+                    if (i < 10) {
+                        t += i;
+                    } else {
+                        t = "" + i;
+                    }
+                    months.push(t);
+                }
+                var today = new Date();
+                var curmont = today.getMonth() + 1;
+                if (curmont < 10) {
+                    curmont = "0" + curmont;
+                } else {
+                    curmont = "" + curmont;
+                }
+                var pickerDescribe = app.picker.create({
+                    inputEl: '#picker',
+                    rotateEffect: false,
+                    value: [
+                        "" + year,
+                        curmont
+                    ],
+                    formatValue: function (values, displayValues) {
+                        return values[0] + '-' + values[1];// + ', ' + values[2] + ' ' + values[3] + ':' + values[4];
+                    },
+                    cols: [
+                        {
+                            textAlign: 'left',
+                            values: years,
+                        },
+                        {
+                            divider: true,
+                            content: '-'
+                        },
+                        {
+                            values: months,
+                        },
+                    ],
+                    on: {
+                        change: function (picker, value, displayValue) {
+                            //debugger;
+                            var d = new Date();
+                            var vl = new Date(+value[0], value[1] - 1, 1);
+                            if (d < vl) {
+                                var t = [];
+                                t.push("" + d.getFullYear());
+                                var m = d.getMonth() + 1;
+                                if (m < 10) {
+                                    m = "0" + m;
+                                } else {
+                                    m = "" + m;
+                                }
+                                t.push(m);
+                                pickerDescribe.setValue(t, 500);
+
+                            }
+                        },
+                        closed: function (picker) {
+                            var value = picker.getValue();
+                            self.getInMonth(value.join("-"));
+                            picker.close();
+                        }
+
+                    }
+                });
+            },
+            pageBeforeIn: function (e, page) {
+                console.log('pageBeforeIn', page);
+                var self = this;
+                var month = new Date();
+                //month.setTime(month.getTime()+month.getTimezoneOffset * 60000);  
+                month = month.toJSON().substr(0, 7);
+
+                try {
+                    var d = page.route.params.month || "0";
+                    if (Date.parse(d) <= new Date() && d != "0" && d != 0) {
+                        self.getInMonth(d);
+                    } else {
+                        self.getInMonth(month);
+                    }
+                } catch (er) {
+                    self.getInMonth(month);
+                }
+                $$(".aDate").on('click', function () {
+                    self.popDate = app.calendar.create({
+                        inputEl: '#popupDate',
+                        dateFormat: 'yyyy-mm-dd',
+                        //openIn: 'sheet',
+                        closeOnSelect: true,
+                        // disabled: function (d) {
+                        //     if (d > new Date()) {
+                        //         return true;
+                        //     }
+                        //     return false;
+                        // },
+                        on: {
+                            dayClick: function (calendar, dayEl, year, month, day) {
+                                //debugger;
+                                //console.log(year,month,day);
+                                //var vl = $$("#popupDate").val();
+                                var frD = year + "-";
+                                if (month < 10) {
+                                    frD += "0";
+                                }
+                                frD += (month + 1);
+                                $$("#picker").val(frD);
+                                frD += "-";
+                                if (day < 10) {
+                                    frD += "0";
+                                }
+                                frD += day;
+                                setTimeout(function () {
+                                    self.getInDate(frD);
+                                }, 500);
+
+                            }
+                        }
+                    });
+                    self.popDate.open();
+                });
+            },
+            pageAfterIn: function (e, page) {
+                console.log('pageAfterIn', page);
+            },
+            pageBeforeOut: function (e, page) {
+                console.log('pageBeforeOut', page);
+            },
+            pageAfterOut: function (e, page) {
+                console.log('pageAfterOut', page);
+            },
+            pageBeforeRemove: function (e, page) {
+                console.log('pageBeforeRemove', page);
+            },
+        }
+    }
+</script>

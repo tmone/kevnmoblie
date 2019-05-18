@@ -1,0 +1,183 @@
+<template>
+    <div class="page" id="config">
+        <div class="navbar" style="background-color:darkorange!important; color:white!important;">
+            <div class="navbar-inner sliding">
+                <div class="left">
+                    <a href="#" class="link back color-blue">
+                        <i class="fas fa-chevron-left" style="color: white"></i>
+                        <span class="ios-only">Back</span>
+                    </a>
+                </div>
+                <div class="title">Cài đặt</div>
+            </div>
+        </div>
+        <div class="page-content">
+            <div class="list">
+                <ul>
+                    <li>
+                        <div class="item-content">                            
+                            <div class="item-inner">
+                                <div class="item-title">
+                                    <div class="item-header">Lời nhắc mua</div>
+                                    0 Phút trước khi cắt
+                                </div>
+                                <div class="item-after"><label class="toggle toggle-init color-orange">
+                                        <input type="checkbox" />
+                                        <span class="toggle-icon"></span>
+                                    </label></div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                            <div class="item-content">                            
+                                <div class="item-inner">
+                                    <div class="item-title">
+                                        <div class="item-header">Chọn thông báo</div>
+                                        Cả hai
+                                    </div>
+                                    <div class="item-after"><label class="toggle toggle-init color-orange">
+                                            <input type="checkbox" checked />
+                                            <span class="toggle-icon"></span>
+                                        </label></div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                                <div class="item-content">                            
+                                    <div class="item-inner">
+                                        <div class="item-title">
+                                            <div class="item-header">Camera On / Off</div>                                            
+                                        </div>
+                                        <div class="item-after"><label class="toggle toggle-init color-orange">
+                                                <input type="checkbox" checked/>
+                                                <span class="toggle-icon"></span>
+                                            </label></div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                    <div class="item-content">                            
+                                        <div class="item-inner">
+                                            <div class="item-title">
+                                                <div class="item-header">Tải lên cơ sở dữ liệu</div>     
+                                                Tải lên trước:<span id="last-login"></span>                               
+                                            </div>                                            
+                                        </div>
+                                    </div>
+                                </li>
+                                <div class="item-content">                            
+                                        <div class="item-inner">
+                                            <div class="item-title">
+                                                <div class="item-header">Xóa tất cả bản ghi</div>     
+                                                Xóa tất cả nhật ký của trình quét                              
+                                            </div>                                            
+                                        </div>
+                                    </div>
+                                </li>
+                                <div class="item-content">                            
+                                        <div class="item-inner">
+                                            <div class="item-title">
+                                                <div class="item-header">Xóa tất cả hình ảnh</div>     
+                                                Xóa tất cả hình ảnh đã chụp bởi ứng dụng                            
+                                            </div>                                            
+                                        </div>
+                                    </div>
+                                </li>
+                </ul>
+            </div>
+
+
+        </div>
+    </div>
+</template>
+<style>
+    p {
+        margin: 10px 0;
+    }
+</style>
+<script>
+    return {
+        // Lifecycle Hooks
+        beforeCreate:function() {
+            console.log('componentBeforeCreate', this)
+        },
+        created:function() {
+            console.log('componentCreated', this);
+        },
+        beforeMount:function() {
+            console.log('componentBeforeMount', this)
+        },
+        mounted:function() {
+            console.log('componentMounted', this);
+        },
+        beforeDestroy:function() {
+            console.log('componentBeforeDestroy', this);
+        },
+        destroyed:function() {
+            console.log('componentDestroyed', this);
+        },
+        // Component Data
+        data: function () {
+            // Must return an object
+            return {
+                server: this.$app.data.serverUrl,
+                push: this.$app.data.pushBill
+            }
+        },
+        // Component Methods
+        methods: {
+            openAlert: function () {
+                var self = this;
+                self.$app.dialog.alert('Hello World');
+            },
+            saveConfig: function () {
+
+                var self = this;
+                var configPush = self.$app.toggle.get(".config-push");
+                var server = self.$app.data.serverUrl = $$('#config-server').val();
+                var push = self.$app.data.pushBill = configPush.checked;
+
+                NativeStorage.setItem("config", {
+                    server: self.$app.data.serverUrl,
+                    push: self.$app.data.pushBill
+                }, function (data) {
+                    self.$app.toast.create({
+                        text: "Đã lưu cài đặt",
+                        closeTimeout: 2000,
+                    }).open();
+                }, function (error) {
+                    self.$app.toast.create({
+                        text: "Lỗi: " + error,
+                        closeTimeout: 2000,
+                    }).open();
+                });
+
+            }
+        },
+        // Page Events
+        on: {
+            pageMounted: function (e, page) {
+                console.log('pageMounted', page);
+            },
+            pageInit: function (e, page) {
+                console.log('pageInit', page);
+            },
+            pageBeforeIn: function (e, page) {
+                console.log('pageBeforeIn', page);
+            },
+            pageAfterIn: function (e, page) {
+                console.log('pageAfterIn', page);
+            },
+            pageBeforeOut: function (e, page) {
+                console.log('pageBeforeOut', page);
+            },
+            pageAfterOut: function (e, page) {
+                console.log('pageAfterOut', page);
+            },
+            pageBeforeRemove: function (e, page) {
+                console.log('pageBeforeRemove', page);
+                //location.reload();
+            },
+        }
+    }    
+</script>

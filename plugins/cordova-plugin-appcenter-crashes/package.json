@@ -1,0 +1,61 @@
+{
+  "_args": [
+    [
+      "cordova-plugin-appcenter-crashes@0.2.1",
+      "D:\\KerrySolution\\Mobiles\\KEVN Mobile"
+    ]
+  ],
+  "_from": "cordova-plugin-appcenter-crashes@0.2.1",
+  "_id": "cordova-plugin-appcenter-crashes@0.2.1",
+  "_inBundle": false,
+  "_integrity": "sha512-3aLF83HsFu2pxI66VuaKRA/D4FlGHkqxtmz0rmwdA1BagPb89070+cgyc9wsfgWZduo7kyWVJLwOXCYsedm7mw==",
+  "_location": "/cordova-plugin-appcenter-crashes",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "cordova-plugin-appcenter-crashes@0.2.1",
+    "name": "cordova-plugin-appcenter-crashes",
+    "escapedName": "cordova-plugin-appcenter-crashes",
+    "rawSpec": "0.2.1",
+    "saveSpec": null,
+    "fetchSpec": "0.2.1"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-appcenter-crashes/-/cordova-plugin-appcenter-crashes-0.2.1.tgz",
+  "_spec": "0.2.1",
+  "_where": "D:\\KerrySolution\\Mobiles\\KEVN Mobile",
+  "author": {
+    "name": "Microsoft Corporation"
+  },
+  "bugs": {
+    "url": "https://github.com/Microsoft/appcenter-sdk-cordova/issues"
+  },
+  "cordova": {
+    "id": "appcenter-crashes",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "description": "Provides Microsoft Azure App Center Crashes client for Cordova",
+  "homepage": "https://github.com/Microsoft/appcenter-sdk-cordova/blob/master/README.md",
+  "keywords": [
+    "microsoft",
+    "azure",
+    "app center",
+    "crashes",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios"
+  ],
+  "license": "MIT",
+  "name": "cordova-plugin-appcenter-crashes",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Microsoft/appcenter-sdk-cordova.git"
+  },
+  "version": "0.2.1"
+}

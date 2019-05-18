@@ -1,0 +1,9 @@
+{
+    "AudioToolbox.framework": 3,
+    "libz.dylib": 1,
+    "SystemConfiguration.framework": 1,
+    "CoreTelephony.framework": 1,
+    "CoreLocation.framework": 2,
+    "AVFoundation.framework": 2,
+    "ImageIO.framework": 1
+}
