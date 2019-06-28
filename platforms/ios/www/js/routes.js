@@ -50,6 +50,10 @@ routes = [
     }
   },
   {
+    path: '/incentive/:month/',
+    componentUrl: './pages/incentive.html',
+  },
+  {
     path: '/hpod/',
     componentUrl: './pages/hpod.html',
   },
@@ -63,7 +67,46 @@ routes = [
   },
   {
     path: '/ofd/',
-    componentUrl: './pages/ofd.html',
+    //componentUrl: './pages/ofd.html',
+    async: function (routeTo, routeFrom, resolve, reject) {
+      // Router instance
+      var router = this;
+
+      // App instance
+      var app = router.app;
+
+      // Show Preloader
+      app.preloader.show();
+
+      app.request.get(app.data.serverUrl + "/api/Report_Permission/get?p=CREATE&r=OFD&u="+app.data.user.user_name, function (data) {
+        var run = false;
+        try{
+          run = data == "true" || data == true
+        }catch(err){
+          run = false
+        }
+        app.preloader.hide();
+        if(run){
+          resolve(
+            {
+              componentUrl: './pages/ofd.html',
+            }            
+          );
+        }else{
+          app.toast.create({
+            text: "Không có quyền này! Liên hệ cấp trên hoặc IT",
+            closeTimeout: 2000,
+          }).open();
+        }
+        
+      }, function (error) {
+        app.preloader.hide();
+        app.toast.create({
+          text: "Không có quyền này! Liên hệ cấp trên hoặc IT",
+          closeTimeout: 2000,
+        }).open();
+      });
+    },
   },
   {
     path: '/about/',

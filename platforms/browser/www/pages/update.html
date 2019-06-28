@@ -1,0 +1,139 @@
+<template>
+    <div class="page" data-name="about">
+        <div class="navbar">
+            <div class="navbar-inner sliding">
+                <div class="left">
+                    <a href="#" class="link back">
+                        <i class="icon icon-back"></i>
+                        <span class="ios-only">Back</span>
+                    </a>
+                </div>
+                <div class="title">Cập nhập phiên bản</div>
+            </div>
+        </div>
+        <div class="page-content">
+            <div class="block-title">KesMobile App</div>
+            <div class="block block-strong">
+                <p>Phiên bản: <img src=https://build.phonegap.com/apps/3344091/badge/1329940294/version.svg /></p>
+                <p>Thông tin thêm có thể liên hệ phòng IT - Công ty Kerry Express VN</p>
+                <p>Phát hiện lỗi vui lòng thông báo về phòng IT! Xin cảm ơn</p>
+            </div>
+            <div class="block">
+                {{#js_if "this._data.version<=this.$root.version"}} <div>Bạn đang dùng phiên bản mới nhất</div>
+            {{/js_if}}
+            {{#js_if "this._data.version>this.$root.version"}}
+            <div>Đã có bản cập nhập mới!</div>
+            <div>Tên: KesMobile</div>
+            <div>Phiên bản: {{_data.version}}</div>
+            <div class="begindownload">
+                <a href="#" class="button button-raised" @click="update('{{_data.url}}')">Cập nhập</a>
+            </div>
+            <div class="downloading" style="display: none">
+                <p>Đang tải</p>
+                <p>
+                    <span class="progressbar-infinite"></span>
+                </p>
+                <p>
+                    <a href="#" class="button button-raised stopdownload">Dừng</a>
+                </p>
+            </div>
+            {{/js_if}}
+        </div>
+    </div>
+    </div>
+</template>
+<style>
+    p {
+        margin: 10px 0;
+    }
+</style>
+<script>
+    return {
+        // Lifecycle Hooks
+        beforeCreate:function() {
+            console.log(JSON.stringify(this._data));
+            console.log('componentBeforeCreate', this)
+        },
+        created:function() {
+            console.log('componentCreated', this)
+        },
+        beforeMount:function() {
+            console.log('componentBeforeMount', this)
+        },
+        mounted:function() {
+            console.log('componentMounted', this);
+        },
+        beforeDestroy:function() {
+            console.log('componentBeforeDestroy', this);
+
+        },
+        destroyed:function() {
+            console.log('componentDestroyed', this);
+
+        },
+        // Component Data
+        data: function (url) {
+            // Must return an object
+            return {
+                name: 'Jimmy',
+                age: 25,
+                like: ['Tennis', 'Chess', 'Football'],
+            }
+        },
+        // Component Methods
+        methods: {
+            update: function (url) {
+                // $$('.begindownload').hide();
+                // $$('downloading').show();
+                // $$('stopdownload').on("click", function () {
+                //     downloader.abort();
+                //     $$('.begindownload').show();
+                //     $$('downloading').hide();
+                // });
+                if (false){ //app.device.android || app.device.ios) {
+                    downloader.init({ folder: "KesMobile", wifiOnly: true });
+                    document.addEventListener("DOWNLOADER_downloadSuccess", function (event) {
+                        var data = event.data;
+                        console.log(data);
+                    });
+                    document.addEventListener("DOWNLOADER_downloadError", function (event) {
+                        var data = event.data;
+                        $$('.begindownload').show();
+                        $$('downloading').hide();
+                    });
+                    document.addEventListener("DOWNLOADER_downloadProgress", function (event) {
+                        var data = event.data;
+                    });
+                    downloader.get(url);
+                } else {
+                    var ref = cordova.InAppBrowser.open(url, '_system');
+                }
+            }
+        },
+        // Page Events
+        on: {
+            pageMounted: function (e, page) {
+                console.log('pageMounted', page);
+            },
+            pageInit: function (e, page) {
+                console.log('pageInit', page);
+            },
+            pageBeforeIn: function (e, page) {
+                console.log('pageBeforeIn', page);
+            },
+            pageAfterIn: function (e, page) {
+                console.log('pageAfterIn', page);
+            },
+            pageBeforeOut: function (e, page) {
+                console.log('pageBeforeOut', page);
+            },
+            pageAfterOut: function (e, page) {
+                console.log('pageAfterOut', page);
+            },
+            pageBeforeRemove: function (e, page) {
+                console.log('pageBeforeRemove', page);
+                //app.router.back('/');    
+            },
+        }
+    }
+</script>

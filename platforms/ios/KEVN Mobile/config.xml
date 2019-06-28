@@ -90,10 +90,12 @@
     <feature name="Zip">
         <param name="ios-package" value="ZipPlugin" />
     </feature>
-    <name>KEVN Mobile		</name>
+    <name>KEVN Mobile</name>
     <description>A tool for pickup and delivery Kerry Express VN.		</description>
     <author email="thinh.nguyen@kerryexpres.com.vn" href="https://kes.kerryexpress.com.vn">IT Kerry Express VN Team		</author>
     <preference name="windows-identity-name" value="" />
+    <content src="index.html" />
+    <access allows-arbitrary-loads-for-media="true" allows-arbitrary-loads-in-web-content="true" allows-local-networking="true" origin="*" />
     <icon src="icon.png" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -168,4 +170,9 @@
     <preference name="BackgroundColor" value="0x000000" />
     <preference name="LoadingDialog" value="," />
     <preference name="LoadUrlTimeoutValue" value="null" />
+    <preference name="APPCENTER_ANALYTICS_ENABLE_IN_JS" value="true" />
+    <preference name="APPCENTER_CRASHES_ALWAYS_SEND" value="false" />
+    <preference name="APP_SECRET" value="64d1155d-8977-46f6-830c-e90125c2f1b6" />
+    <preference name="CodePushDeploymentKey" value="883VVBZ52zV0mdqiGriMayQp7LiaHJGJ7wyxE" />
+    <preference name="APPCENTER_APP_SECRET" value="64d1155d-8977-46f6-830c-e90125c2f1b6" />
 </widget>

@@ -56,12 +56,12 @@ function onBackKeyDown() {
     app.confirm('Dữ liệu chưa được lưu. Vẫn thoát?', function () {
       // var deviceType = device.platform;
       // if(deviceType == “Android” || deviceType == “android”){
-        mainView.router.back();
+      mainView.router.back();
       // }
     },
       function () {
       });
-  }{
+  } {
     mainView.router.back();
   }
 }
@@ -69,7 +69,7 @@ function onBackKeyDown() {
 // Framework7 App main instance
 var app = new Framework7({
   root: '#app', // App root element
-  id: 'com.kerryexpress.kesmobile', // App bundle ID
+  id: 'vn.com.kerryexpress.kesmobile', // App bundle ID
   name: 'KesMobile', // App name
   theme: 'auto', // Automatic theme detection
   version: 130,
@@ -370,23 +370,23 @@ var app = new Framework7({
                   $("<div class=''>").append(
                     $("<div class='row'>").append(
                       $("<div class='col-10'><a class='" + co[options.data.PRO] + "'><i class='f7-icons style='font-size:16px'>circle_fill</i></a>"),
-                      $("<div class='col-80'><span style='color:blue;font-weight:600; font-size:18px;text-decoration: underline;'>" + options.data.Consignment_No + "</span>"),
+                      $("<div class='col-80'><span style='color:blue;font-weight:600; font-size:18px;text-decoration: underline;'>" + (options.data.Consignment_No || "").replace(/[\'\"\`]/g, "~") + "</span>"),
                       $("<div class='col-10'>").text("ND")
                     ),
                     $("<div class='row'>").append(
                       $("<div class='col-10'><a class='icon link'><img src='img/ic_call.png' style='height:24px'/></a>"),
-                      $("<div class='col-90'>").text(options.data.Recipient_Name || "N/A")
+                      $("<div class='col-90'>").text((options.data.Recipient_Name || "").replace(/[\'\"\`]/g, "~") || "N/A")
                     ),
                     $("<div class='row' style='min-height:24px'>").append(
-                      $("<div class='col' >").text(options.data.Recipient_Address || " ")),
+                      $("<div class='col' >").text((options.data.Recipient_Address || "").replace(/[\'\"\`]/g, "~") || " ")),
                     $("<div class='row' style='min-height:24px'>").append(
                       $("<div class='col'>").append(
-                        $("<span>").text(options.data.Recipient_Phone_No || " ")),
+                        $("<span>").text((options.data.Recipient_Phone_No || "").replace(/[\'\"\`]/g, "~") || " ")),
                       $("<div class='col'>").append(
-                        $("<span>").text(options.data.Recipient_Contact_Person || " "))
+                        $("<span>").text((options.data.Recipient_Contact_Person || "").replace(/[\'\"\`]/g, "~") || " "))
                     ),
                     $("<div class='row' style='min-height:24px'>").append(
-                      $("<div class='col'>").text(options.data.Remark + " ")
+                      $("<div class='col'>").text((options.data.Remark || "").replace(/[\'\"\`]/g, "~") + " ")
                     )
                   )
                 ).appendTo(container);
@@ -445,9 +445,9 @@ var app = new Framework7({
             }
           ],
           //remoteOperations: true,
-          onRowClick:function(e){
+          onRowClick: function (e) {
             app.data.lastChoice = e.data;
-            if (e.data.PRO > 2) {              
+            if (e.data.PRO > 2) {
               mainView.router.navigate('/bill/' + e.data.Consignment_No + '/');
             }
           },
@@ -483,6 +483,35 @@ var app = new Framework7({
         }]);
       }
     },
+    uploadConsignmentImage: function (cbs, cbe) {
+      var camearaOptions = {
+        quality: 50,
+        encodingType: Camera.EncodingType.JPEG,
+        destinationType: navigator.camera.DestinationType.DATA_URL,
+        mediaType: Camera.MediaType.PICTURE,
+        //allowEdit: true,
+        correctOrientation: true,  //Corrects Android orientation quirks
+        targetWidth: 1000,
+        //sourceType: navigator.camera.PictureSourceType.CAMERA
+      }
+
+      navigator.camera.getPicture(uploadPhoto, function (err) {
+        console.log(err);
+        if(cbe){
+          cbe(err);
+        }
+      }, camearaOptions);
+
+      //uploadPhoto("../img/logo.png");
+
+      function uploadPhoto(imageData) {
+        if(imageData && imageData.length>0){
+          if(cbs){
+            cbs(imageData);
+          }
+        }
+      }
+    },
     refreshBILL: function () {
       $.ajax({
         url: app.data.serverUrl + "/api/CacheMPOD/" + app.data.user.user_name + "?u=" + app.data.user.user_name + "&p=" + app.data.user.password,
@@ -507,10 +536,9 @@ var app = new Framework7({
       }).done(function (data) {
         processDataBILL(data);
       });
-      //var data = $.getJSON(app.data.serverUrl + "/api/CacheMPOD/" + app.data.user.user_name + "?u=" + app.data.user.user_name + "&p=" + app.data.user.password);
     }
   },
-  // App routes
+
   routes: routes,
 });
 
@@ -564,7 +592,7 @@ var removeUserInfoError = function (error) {
   if (error.exception !== "") console.log(error.exception);
 };
 
-
+///////////////////
 
 ///GEO///
 var onGeoSuccess = function (position) {
@@ -679,7 +707,7 @@ $$(document).on('deviceready', function () {
       ]
     }).open();
   });
-  AppCenter.Push.addEventListener('notificationReceived', onNotificationReceived);
+  //AppCenter.Push.addEventListener('notificationReceived', onNotificationReceived);
   var platform = device.platform;
   if (device.platform.toLocaleUpperCase() == "ANDROID") {
     codePush.sync(null,
@@ -691,6 +719,11 @@ $$(document).on('deviceready', function () {
       });
   }
   if (device.platform.toLocaleUpperCase() == "IOS") {
+    codePush.getCurrentPackage(function (metadata) {
+      if (metadata) {
+        $$(".code-version").text(metadata.label + " " + metadata.appVersion);
+      }
+    }, function () { });
     codePush.sync(null,
       {
         updateDialog: false,
@@ -699,29 +732,29 @@ $$(document).on('deviceready', function () {
 
       });
   }
-  if (platform == "iOS" || platform == "Android") {
-    //codePush.sync(null, { updateDialog: true, installMode: InstallMode.IMMEDIATE });
-    checkConnection();
-    //check update
-    var t = new Date().getTime();
-    app.request.get(app.data.serverUrl + "/api/Version", function (data) {
-      //debugger;
-      var dat = JSON.parse(JSON.parse(data));
-      if (dat.version > app.version) {
-        app.toast.create({
-          text: "<strong>Có bản cập nhập mới... </strong><a class='link external' href='" + dat.url + "'><i class='f7-icons'>cloud_download_fill</i> Tải về</a>.<br>Phiên bản: " + dat.version + ". Ngày: " + dat.date_upload,
-          position: 'top',
-          closeButton: true,
-          closeButtonText: '<i class="f7-icons">close_round_fill</i>',
-        }).open();
-      }
-    });
+  // if (platform == "iOS" || platform == "Android") {
+  //   //codePush.sync(null, { updateDialog: true, installMode: InstallMode.IMMEDIATE });
+  //   checkConnection();
+  //   //check update
+  //   var t = new Date().getTime();
+  //   app.request.get(app.data.serverUrl + "/api/Version", function (data) {
+  //     //debugger;
+  //     var dat = JSON.parse(JSON.parse(data));
+  //     if (dat.version > app.version) {
+  //       app.toast.create({
+  //         text: "<strong>Có bản cập nhập mới... </strong><a class='link external' href='" + dat.url + "'><i class='f7-icons'>cloud_download_fill</i> Tải về</a>.<br>Phiên bản: " + dat.version + ". Ngày: " + dat.date_upload,
+  //         position: 'top',
+  //         closeButton: true,
+  //         closeButtonText: '<i class="f7-icons">close_round_fill</i>',
+  //       }).open();
+  //     }
+  //   });
 
-    //end check update
-  }
+  //   //end check update
+  // }
 
 
-  AppCenter.Analytics.setEnabled(true);
+  //AppCenter.Analytics.setEnabled(true);
 
   NativeStorage.getItem("config", function (result) {
     app.data.serverUrl = result.server || app.data.serverUrl;
@@ -762,13 +795,6 @@ $$(document).on('deviceready', function () {
       app.methods.refreshBILL();
     }, 30000);
   }, 1000);
-
-  if (cordova.getAppVersion) {
-    cordova.getAppVersion.getVersionNumber(function (version) {
-      app.data.version = version;
-      $$('.version').text(version);
-    });
-  }
 
 });
 

@@ -59,5 +59,16 @@
     <string>Capture bill status</string>
     <key>NSPhotoLibraryUsageDescription</key>
     <string>save and upload last bill status</string>
+    <key>NSAppTransportSecurity</key>
+    <dict>
+      <key>NSAllowsArbitraryLoads</key>
+      <true/>
+      <key>NSAllowsArbitraryLoadsInWebContent</key>
+      <true/>
+      <key>NSAllowsArbitraryLoadsForMedia</key>
+      <true/>
+      <key>NSAllowsLocalNetworking</key>
+      <true/>
+    </dict>
   </dict>
 </plist>

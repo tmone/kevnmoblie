@@ -1,0 +1,171 @@
+<template>
+    <div class="page">
+        <div class="navbar">
+            <div class="navbar-inner sliding">
+                <div class="left">
+                    <a href="#" class="link back" id="returnMain">
+                        <i class="icon icon-back"></i>
+                        <span class="ios-only">Back</span>
+                    </a>
+                </div>
+                <div class="title">Vị trí giao hàng</div>
+            </div>
+        </div>
+        <div class="page-content" style="padding-bottom:50px;">
+            <div class="block-title">Bản đồ</div>
+            <div class="list" id="map">
+
+            </div>
+            <div class="block-title"><label class="item-checkbox item-content">
+                    <input type="checkbox" name="mapall-checkbox" checked="checked" />
+                    <i class="icon icon-checkbox"></i>
+                    <div class="item-inner">
+                        <div class="item-title">Danh sách đơn hàng</div>
+                    </div>
+                </label></div>
+            <div class="list">
+                <ul>
+                    {{#each _route}}
+                    <li>
+                        <label class="item-checkbox item-content">
+                            <input type="checkbox" name="map-checkbox" checked="checked" value="{{this.Consignment_No}}"
+                                data-value="{{this.Recipient_Address}}" data-billid="{{this.Consignment_No}}" />
+                            <i class="icon icon-checkbox"></i>
+                            <div class="item-inner">
+                                <div class="item-title-row">
+                                    <div class="item-title">{{this.Consignment_No}}</div>
+                                    <div class="item-after">{{this.COD_Amount}}</div>
+                                </div>
+                                <div class="item-subtitle">{{this.Recipient_Name}}</div>
+                                <div class="item-text">{{this.Recipient_Address}}<br>{{this.Recipient_Contact_Person}}
+                                    {{this.Special_Delivery_Remark}}</div>
+                            </div>
+                        </label>
+                    </li>
+                    {{/each}}
+                </ul>
+            </div>
+        </div>
+        <div class="fab fab-extended fab-center-bottom color-red">
+            <a href="#" @click="trace">
+                <i class="icon f7-icons ios-only">navigation</i>
+                <i class="icon material-icons md-only">navigation</i>
+                <!-- <div class="fab-text">Tối ưu</div> -->
+            </a>
+        </div>
+    </div>
+
+</template>
+<style>
+    p {
+        margin: 10px 0;
+    }
+</style>
+<script>
+    return {
+        // Lifecycle Hooks
+        beforeCreate:function() {
+            console.log('componentBeforeCreate', this);
+        },
+        created:function() {
+            console.log('componentCreated', this)
+        },
+        beforeMount:function() {
+            console.log('componentBeforeMount', this)
+        },
+        mounted:function() {
+            console.log('componentMounted', this);
+        },
+        beforeDestroy:function() {
+            console.log('componentBeforeDestroy', this);
+
+        },
+        destroyed:function() {
+            console.log('componentDestroyed', this);
+
+        },
+        // Component Data
+        data: function () {
+            // Must return an object
+            return {
+                name: 'Jimmy',
+                age: 25,
+                like: ['Tennis', 'Chess', 'Football'],
+            }
+        },
+        // Component Methods
+        methods: {           
+            trace: function () {  
+                var _self = this;              
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    app.data.geolocation = position;
+                    _self.updatePostion();
+                }, function (error) {
+                    app.toast.create({
+                        text: "Tính năng này cần bật định vị GPS để hoạt động hiệu quả<br>" + error,
+                        closeTimeout: 2000,
+                    }).open();
+                });
+            },
+            updatePostion: function(){                
+                var markdb = [];                
+                markdb = this._route.filter(function(x){return !!x.Recipient_Address;}).map(function(x){return {location:x.Recipient_Address};});
+                var routedb = [];
+                routedb  = this._route.filter(function(x){return !!x.Recipient_Address;}).map(function(x){return x.Recipient_Address;});
+                console.log(app.data.geolocation);
+                if(app.data.geolocation){
+                    routedb.unshift([
+                        app.data.geolocation.coords.latitude,
+                        app.data.geolocation.coords.longitude,
+                    ]);
+                }
+                //console.log(markdb);
+                //console.log(routedb);
+                $("#map").dxMap({
+                    key:'AIzaSyDec3CO49CrYHEHS6fumUCS_NYOWmVrllk',
+                    zoom: 14,
+                    height: 440,
+                    width: "100%",
+                    controls: true,
+                    markers: markdb,
+                    routes: [
+                        {
+                            weight: 6,
+                            color: "orange",
+                            opacity: 0.5,
+                            mode: "",
+                            locations: routedb
+                        }
+                    ]
+                });
+            }
+        },
+        // Page Events
+        on: {
+            pageMounted: function (e, page) {
+                console.log('pageMounted', page);
+                this.updatePostion();
+            },
+            pageInit: function (e, page) {
+                console.log('pageInit', page);                
+            },
+            pageBeforeIn: function (e, page) {
+                console.log('pageBeforeIn', page);
+            },
+            pageAfterIn: function (e, page) {
+                console.log('pageAfterIn', page);
+                this.updatePostion();                
+            },
+            pageBeforeOut: function (e, page) {
+                console.log('pageBeforeOut', page);
+            },
+            pageAfterOut: function (e, page) {
+                console.log('pageAfterOut', page);
+            },
+            pageBeforeRemove: function (e, page) {
+                console.log('pageBeforeRemove', page);
+                //app.router.back('/');    
+            },
+        }
+    }
+</script>
